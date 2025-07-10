@@ -1,2 +1,7 @@
 .DS_Store
 /target 
+target/
+doom/target/
+engine/target/
+math/target/
+wad/target/
