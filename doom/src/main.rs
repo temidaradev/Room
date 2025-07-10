@@ -1,30 +1,25 @@
-#[derive(Clone)]
-struct Player {
-    x: f32,
-    y: f32,
-    health: i32,
-}
+use wad::*;
+use std::fs::File;
+use std::io::BufReader;
+
+
 
 fn main() {
-    let mut player = Player {
-        x: 0.0,
-        y: 0.0,
-        health: 100,
-    };
-
-    print_player(&player);
-    move_player(&mut player, 10.0, 5.0);
-    let other_player = player;
-    let cloned_player = other_player.clone();
-
-    print_player(&cloned_player);
+    match read_wad("./game/Doom1.WAD") {
+        Ok(_) => println!("Success!"),
+        Err(e) => println!("Error: {}", e),
+    }
 }
 
-fn print_player(p: &Player) {
-    println!("Player at ({}, {}) with {} health", p.x, p.y, p.health);
-}
+fn read_wad(filename: &str) -> Result<(), Box<dyn std::error::Error>> {
+    let file = File::open(filename)?;
+    let reader = BufReader::new(file);
 
-fn move_player(p: &mut Player, dx: f32, dy: f32) {
-    p.x += dx;
-    p.y += dy;
+    let wad = WadFile::load(reader)?;
+
+    for lump in wad.lumps {
+        println!("Lump: {} ({} bytes)", lump.name, lump.data.len());
+    }
+
+    Ok(())
 }
