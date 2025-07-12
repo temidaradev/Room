@@ -1,10 +1,10 @@
 ---
 id: task-1
 title: Learn Rust basics with simple project setup
-status: To Do
+status: Done
 assignee: []
 created_date: '2025-07-09'
-updated_date: '2025-07-09'
+updated_date: '2025-07-12'
 labels: []
 dependencies: []
 ---

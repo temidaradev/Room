@@ -1,10 +1,10 @@
 ---
 id: task-2
 title: Learn Rust ownership with simple data structures
-status: To Do
+status: Done
 assignee: []
 created_date: '2025-07-09'
-updated_date: '2025-07-09'
+updated_date: '2025-07-12'
 labels: []
 dependencies: []
 ---

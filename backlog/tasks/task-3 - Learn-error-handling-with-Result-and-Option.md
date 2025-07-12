@@ -1,10 +1,10 @@
 ---
 id: task-3
 title: Learn error handling with Result and Option
-status: To Do
+status: Done
 assignee: []
 created_date: '2025-07-09'
-updated_date: '2025-07-09'
+updated_date: '2025-07-12'
 labels: []
 dependencies: []
 ---
