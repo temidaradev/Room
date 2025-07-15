@@ -5,4 +5,4 @@ edition = "2024"
 
 [dependencies]
 wad = { workspace = true }
-sdl2 = { workspace = true }
+engine = { workspace = true }
