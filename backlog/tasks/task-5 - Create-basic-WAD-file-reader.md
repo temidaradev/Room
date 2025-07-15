@@ -1,10 +1,10 @@
 ---
 id: task-5
 title: Create basic WAD file reader
-status: Done
+status: To Do
 assignee: []
 created_date: '2025-07-09'
-updated_date: '2025-07-12'
+updated_date: '2025-07-09'
 labels: []
 dependencies: []
 ---

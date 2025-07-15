@@ -1,10 +1,10 @@
 ---
 id: task-6
 title: Learn collections with HashMap and Vec
-status: Done
+status: To Do
 assignee: []
 created_date: '2025-07-09'
-updated_date: '2025-07-12'
+updated_date: '2025-07-09'
 labels: []
 dependencies: []
 ---
