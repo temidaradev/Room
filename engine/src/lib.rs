@@ -1,14 +1,25 @@
-pub fn add(left: u64, right: u64) -> u64 {
-    left + right
+use sdl2::Sdl;
+
+use entity::*;
+use map::*;
+use math::*;
+use player::*;
+use renderer::*;
+use wad::WadFile;
+
+use std::time::{Duration, Instant};
+
+pub struct Engine {
+    sdl_context: Sdl,
+    wad: WadFile,
+    renderer: Renderer,
+    game_state: GameState,
+    last_frame_time: Instant,
 }
 
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
-    }
+pub struct GameState {
+    pub current_map: Option<Map>,
+    pub player: Player,
+    pub entities: Vec<Entity>,
+    pub game_time: Duration,
 }

@@ -2,7 +2,11 @@
 members = [
     "doom",
     "engine",
+    "entity",
+    "map",
     "math",
+    "player",
+    "renderer",
     "wad",
 ]
 resolver = "3"
@@ -11,8 +15,14 @@ resolver = "3"
 byteorder = "1.5.0"
 thiserror = "2.0.12"
 sdl2 = "0.38.0"
+bevy_ecs = "0.16.1"
 glam = "0.30.4"
 serde = { version = "1.0.219", features = ["derive"] }
-wad = { path = "wad" }
-math = { path = "math" }
 engine = { path = "engine" }
+entity = { path = "entity" }
+map = { path = "map" }
+math = { path = "math" }
+player = { path = "player" }
+renderer = { path = "renderer" }
+wad = { path = "wad" }
+

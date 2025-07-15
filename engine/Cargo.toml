@@ -4,3 +4,11 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
+bevy_ecs = { workspace = true }
+sdl2 = { workspace = true }
+entity = { workspace = true }
+map = { workspace = true }
+math = { workspace = true }
+player = { workspace = true }
+renderer = { workspace = true }
+wad = { workspace = true }

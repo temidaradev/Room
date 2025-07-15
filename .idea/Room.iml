@@ -6,6 +6,10 @@
       <sourceFolder url="file://$MODULE_DIR$/engine/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/math/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/wad/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/entity/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/map/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/player/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/renderer/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
     <orderEntry type="inheritedJdk" />
