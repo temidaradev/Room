@@ -11,4 +11,5 @@ map = { workspace = true }
 math = { workspace = true }
 player = { workspace = true }
 renderer = { workspace = true }
+input = { workspace = true }
 wad = { workspace = true }

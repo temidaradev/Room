@@ -1,22 +1,24 @@
 use sdl2::Sdl;
 
 use entity::*;
+use input::*;
 use map::*;
 use math::*;
 use player::*;
 use renderer::*;
 use wad::WadFile;
 
-use std::time::{Duration, Instant};
 use sdl2::event::Event;
 use sdl2::keyboard::Keycode;
 use sdl2::pixels::Color;
+use std::time::{Duration, Instant};
 
 pub struct Engine {
     sdl_context: Sdl,
     wad: WadFile,
     renderer: Renderer,
     game_state: GameState,
+    input_handler: Input,
     last_frame_time: Instant,
 }
 
@@ -28,40 +30,66 @@ pub struct GameState {
 }
 
 impl Engine {
-    pub fn draw_testing() {
-        let sdl_context = sdl2::init().unwrap();
-        let video_subsystem = sdl_context.video().unwrap();
+    pub fn new(wad_path: &str) -> Result<Self, Box<dyn std::error::Error>> {
+        let sdl_context = sdl2::init()?;
+        let wad = WadFile::load(std::fs::File::open(wad_path)?)?;
 
-        let window = video_subsystem
-            .window("rust-sdl2 demo", 800, 600)
-            .position_centered()
-            .build()
-            .unwrap();
+        let renderer = Renderer::new(&sdl_context)?;
+        let game_state = GameState::new();
+        let input_handler = Input::new(&sdl_context)?;
 
-        let mut canvas = window.into_canvas().build().unwrap();
+        Ok(Engine {
+            sdl_context,
+            wad,
+            renderer,
+            game_state,
+            input_handler,
+            last_frame_time: Instant::now(),
+        })
+    }
 
-        canvas.set_draw_color(Color::RGB(0, 255, 255));
-        canvas.clear();
-        canvas.present();
-        let mut event_pump = sdl_context.event_pump().unwrap();
-        let mut i = 0;
+    pub fn run(&mut self) -> Result<(), Box<dyn std::error::Error>> {
+        let mut event_pump = self.sdl_context.event_pump()?;
+
         'running: loop {
-            i = (i + 1) % 255;
-            canvas.set_draw_color(Color::RGB(i, 64, 255 - i));
-            canvas.clear();
-            for event in event_pump.poll_iter() {
-                match event {
-                    Event::Quit { .. }
-                    | Event::KeyDown {
-                        keycode: Some(Keycode::Escape),
-                        ..
-                    } => break 'running,
-                    _ => {}
-                }
+            let current_time = Instant::now();
+            let delta_time = current_time - self.last_frame_time;
+            self.last_frame_time = current_time;
+
+            // Handle input
+            if !self.input_handler.handle_events(&mut event_pump)? {
+                break 'running;
             }
 
-            canvas.present();
-            std::thread::sleep(Duration::new(0, 1_000_000_000u32 / 60));
+            // Update game state
+            self.update_game_state(delta_time)?;
+
+            // Render frame
+            self.renderer.render_frame(&self.game_state)?;
+
+            // Cap frame rate
+            std::thread::sleep(Duration::from_millis(16)); // ~60 FPS
         }
+
+        Ok(())
+    }
+
+    fn update_game_state(
+        &mut self,
+        delta_time: Duration,
+    ) -> Result<(), Box<dyn std::error::Error>> {
+        self.game_state.game_time += delta_time;
+
+        // Update player position based on input
+        self.game_state
+            .player
+            .update(delta_time, &self.input_handler);
+
+        // Update entities
+        for entity in &mut self.game_state.entities {
+            entity.update(delta_time);
+        }
+
+        Ok(())
     }
 }

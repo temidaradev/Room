@@ -11,7 +11,6 @@ fn main() {
     }
 
     Engine::draw_testing();
-
 }
 
 fn read_wad(filename: &str) -> Result<(), Box<dyn std::error::Error>> {

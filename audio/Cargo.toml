@@ -1,0 +1,8 @@
+[package]
+name = "audio"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+sdl2 = { workspace = true }
+wad = { workspace = true }

@@ -10,6 +10,8 @@
       <sourceFolder url="file://$MODULE_DIR$/map/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/player/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/renderer/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/audio/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/input/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
     <orderEntry type="inheritedJdk" />
